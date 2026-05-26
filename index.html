@@ -1199,7 +1199,7 @@
     .proj-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: 320px 300px 210px;
+      grid-template-rows: 320px 300px 280px 210px;
       gap: 16px;
     }
 
@@ -1219,8 +1219,14 @@
       grid-area: 2 / 2 / 3 / 3;
     }
 
-    .pc-proofish {
+    .pc-whereismydata {
       grid-area: 3 / 1 / 4 / 4;
+      display: flex;
+      flex-direction: row;
+    }
+
+    .pc-proofish {
+      grid-area: 4 / 1 / 5 / 4;
       display: flex;
       flex-direction: row;
     }
@@ -1238,7 +1244,8 @@
         grid-area: auto;
       }
 
-      .pc-proofish {
+      .pc-proofish,
+      .pc-whereismydata {
         grid-column: 1 / -1;
         flex-direction: column;
       }
@@ -1249,7 +1256,8 @@
         grid-template-columns: 1fr;
       }
 
-      .pc-proofish {
+      .pc-proofish,
+      .pc-whereismydata {
         flex-direction: column;
       }
     }
@@ -1301,7 +1309,8 @@
       font-size: 1.8rem;
     }
 
-    .pc-proofish .proj-banner {
+    .pc-proofish .proj-banner,
+    .pc-whereismydata .proj-banner {
       width: 36%;
       height: 100%;
       border-radius: 0;
@@ -1309,7 +1318,8 @@
     }
 
     @media (max-width: 900px) {
-      .pc-proofish .proj-banner {
+      .pc-proofish .proj-banner,
+      .pc-whereismydata .proj-banner {
         width: 100%;
         height: 90px;
       }
@@ -1371,7 +1381,8 @@
       flex: 1;
     }
 
-    .pc-proofish .proj-body {
+    .pc-proofish .proj-body,
+    .pc-whereismydata .proj-body {
       padding: 22px 28px;
       justify-content: center;
     }
@@ -1600,6 +1611,12 @@
       color: #94a3b8;
       border-color: rgba(148, 163, 184, .3);
       background: rgba(148, 163, 184, .08);
+    }
+
+    .tt-project {
+      color: #0a0e17;
+      border-color: #5eead4;
+      background: #5eead4;
     }
 
     /* ─────────────────────────────────────────────
@@ -2013,6 +2030,85 @@
       color: var(--muted);
       line-height: 1.6;
     }
+
+    /* ── Beyond the Tech ─────────────────────────── */
+    #beyond {
+      background: var(--bg);
+      padding: 120px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .beyond-bg-num {
+      position: absolute;
+      top: -30px;
+      right: 40px;
+      font-size: clamp(120px, 18vw, 200px);
+      font-weight: 900;
+      color: rgba(255,255,255,.025);
+      line-height: 1;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    .beyond-inner {
+      max-width: 1160px;
+      margin: 0 auto;
+    }
+
+    .beyond-hd {
+      margin-bottom: 56px;
+    }
+
+    .beyond-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+    }
+
+    .beyond-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 32px;
+      transition: transform .3s ease, border-color .3s ease, box-shadow .3s ease;
+    }
+
+    .beyond-card:hover {
+      transform: translateY(-6px);
+      border-color: var(--ba);
+      box-shadow: 0 12px 40px rgba(94,234,212,.08);
+    }
+
+    .beyond-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .beyond-card-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 12px;
+    }
+
+    .beyond-card-desc {
+      font-size: .9rem;
+      color: #8b8fa8;
+      line-height: 1.75;
+    }
+
+    @media (max-width: 768px) {
+      #beyond {
+        padding: 80px 24px;
+      }
+
+      .beyond-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
   </style>
 </head>
 
@@ -2095,18 +2191,20 @@
       <div class="about-inner">
         <div class="fi">
           <span class="about-label">About me</span>
-          <h2 class="about-title">Building things<br>end to end.</h2>
+          <h2 class="about-title">More than just<br>an IT guy.</h2>
           <div class="about-rule" id="about-rule"></div>
           <p class="about-body">
-            I'm a <strong>second-year IT Services student at SAIT</strong> in Calgary, specializing in
-            <strong>enterprise networking</strong>, server administration, and cybersecurity. I build and manage
-            real lab environments — from <span class="hl">OSPF multi-area networks</span> and
-            <strong>Windows Server / Active Directory</strong> deployments to
-            <strong>Proxmox clusters</strong> and pfSense firewall configurations. Alongside my ITSM coursework
-            (ServiceNow, ITIL), I co-founded <span class="hl">BridgeUp</span> and recently earned
-            <strong>Best UI Design</strong> at the Power Platform Hackathon. I work at
-            <strong>TELUS Digital</strong> as a map quality analyst and recently won
-            <strong>Best Design</strong> at the Product Management Calgary hackathon.
+            Before I ever touched a server, I spent years in customer-facing roles —
+            <strong>Best Buy Canada, 7-Eleven, Reliance Smart</strong> — learning how to listen, stay calm
+            under pressure, and explain complicated things to people who just want their problem solved.
+            That background shapes how I approach IT: I care about the person on the other end, not just
+            the ticket. I volunteer at the <span class="hl">Calgary Drop-In Centre</span> and serve at
+            my local Gurdwara because service is something I was raised with, not something I do for a resume.
+            My industry mentor <strong>Bonnie Nasim</strong> put it well when she said I
+            <em>"consistently demonstrate outstanding values, compassion, and kindness"</em> — and honestly,
+            I think that matters in IT just as much as knowing your way around a VLAN.
+            I'm fluent in <strong>Punjabi and English</strong>, I've co-founded two products with teammates,
+            and I always make sure everyone's on the same page before we ship something.
           </p>
         </div>
         <div class="stat-grid">
@@ -2121,6 +2219,34 @@
           <div class="stat fi d4">
             <div class="stat-num" data-target="2">0</div>
             <div class="stat-lbl">Years of IT training</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ BEYOND THE TECH ════════════════════════ -->
+    <section id="beyond">
+      <span class="beyond-bg-num" aria-hidden="true">00</span>
+      <div class="beyond-inner">
+        <div class="beyond-hd sec-header fi">
+          <span class="sec-label-sm">Beyond the tech</span>
+          <h2 class="sec-title">The stuff that<br>doesn't fit a CV.</h2>
+        </div>
+        <div class="beyond-cards">
+          <div class="beyond-card fi d1">
+            <span class="beyond-icon">🤝</span>
+            <div class="beyond-card-title">Sales &amp; Customer Experience</div>
+            <p class="beyond-card-desc">3+ years across Best Buy Canada, 7-Eleven, and retail in India. I know how to listen, explain complex things simply, handle frustrated people calmly, and close the loop. That translates directly into great help desk and client-facing IT work.</p>
+          </div>
+          <div class="beyond-card fi d2">
+            <span class="beyond-icon">🧩</span>
+            <div class="beyond-card-title">Team-First Mindset</div>
+            <p class="beyond-card-desc">I co-founded two products, led UI on a hackathon team, and always make sure everyone knows what's happening. I'm the person who asks questions early so the team doesn't hit problems late.</p>
+          </div>
+          <div class="beyond-card fi d3">
+            <span class="beyond-icon">🌱</span>
+            <div class="beyond-card-title">Values &amp; Community</div>
+            <p class="beyond-card-desc">I volunteer at the Calgary Drop-In Centre and serve langar at my local Gurdwara. Service isn't something I do for a resume — it's just how I was raised. I bring that same mindset into every team I'm part of.</p>
           </div>
         </div>
       </div>
@@ -2224,6 +2350,23 @@
             </div>
           </a>
 
+          <!-- WhereIsMyData — full width -->
+          <a href="https://gursharan-brar.github.io/whereismydata" target="_blank" rel="noopener"
+            class="proj-card pc-whereismydata fi d1" data-tilt>
+            <div class="proj-banner pb-teal">
+              <span>🔍</span>
+              <div class="proj-arr">↗</div>
+            </div>
+            <div class="proj-body">
+              <span class="proj-badge pb-badge-teal">Solo Build · Live on GitHub Pages</span>
+              <div class="proj-name">WhereIsMyData</div>
+              <div class="proj-desc">AI-assisted Canadian privacy policy scanner. Paste any policy, get an A–F grade in 20 seconds against 11 criteria grounded in PIPEDA and Alberta PIPA. Single source of truth via rubric.json shared between Python FastAPI backend and browser JS.</div>
+              <div class="pill-row">
+                <span class="pill">Python</span><span class="pill">FastAPI</span><span class="pill">Claude Haiku</span><span class="pill">GitHub Pages</span><span class="pill">Vanilla JS</span>
+              </div>
+            </div>
+          </a>
+
           <!-- CI/CD Pipeline -->
           <a href="https://github.com/gursharan-brar" target="_blank" rel="noopener" class="proj-card pc-campus fi d2"
             data-tilt>
@@ -2292,6 +2435,22 @@
           <div class="tl-track">
             <div class="tl-bg"></div>
             <div class="tl-fill" id="tl-fill"></div>
+          </div>
+
+          <div class="tl-item d1">
+            <div class="tl-dot"></div>
+            <div class="tl-date">2026</div>
+            <div class="tl-role">WhereIsMyData</div>
+            <div class="tl-org">AI Privacy Policy Scanner · Solo Build</div>
+            <span class="tl-tag tt-project">PROJECT</span>
+          </div>
+
+          <div class="tl-item d1">
+            <div class="tl-dot"></div>
+            <div class="tl-date">2026</div>
+            <div class="tl-role">RoleRecon</div>
+            <div class="tl-org">5-Agent Career Gap Pipeline · VS Code + GitHub Copilot</div>
+            <span class="tl-tag tt-project">PROJECT</span>
           </div>
 
           <div class="tl-item d1">
