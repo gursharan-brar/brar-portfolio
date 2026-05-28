@@ -1195,63 +1195,42 @@
       line-height: 1.1;
     }
 
-    /* asymmetric grid */
+    /* masonry layout */
     .proj-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: 320px 280px 260px 210px;
-      gap: 16px;
+      columns: 2;
+      column-gap: 16px;
     }
 
+    .proj-card {
+      break-inside: avoid;
+      margin-bottom: 16px;
+      display: inline-block;
+      width: 100%;
+    }
+
+    /* Remove all pc- grid-area rules */
+    .pc-bridgeup, .pc-campus, .pc-email,
+    .pc-whereismydata, .pc-careflow { }
+
+    /* BridgeUp spans full width */
     .pc-bridgeup {
-      grid-area: 1 / 1 / 2 / 3;
+      column-span: all;
     }
 
-    .pc-campus {
-      grid-area: 3 / 1 / 4 / 2;
-    }
-
-    .pc-email {
-      grid-area: 3 / 2 / 4 / 3;
-    }
-
+    /* WhereIsMyData spans full width */
     .pc-whereismydata {
-      grid-area: 2 / 1 / 3 / 3;
-    }
-
-    .pc-proofish {
-      grid-area: 4 / 1 / 5 / 3;
-      display: flex;
-      flex-direction: row;
+      column-span: all;
     }
 
     @media (max-width: 900px) {
       .proj-grid {
-        grid-template-columns: 1fr 1fr;
-        grid-template-rows: auto;
-      }
-
-      .pc-bridgeup,
-      .pc-campus,
-      .pc-email {
-        grid-area: auto;
-      }
-
-      .pc-proofish,
-      .pc-whereismydata {
-        grid-column: 1 / -1;
-        flex-direction: column;
+        columns: 1;
       }
     }
 
     @media (max-width: 560px) {
       .proj-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .pc-proofish,
-      .pc-whereismydata {
-        flex-direction: column;
+        columns: 1;
       }
     }
 
@@ -1302,18 +1281,8 @@
       font-size: 1.8rem;
     }
 
-    .pc-proofish .proj-banner {
-      width: 36%;
-      height: 100%;
-      border-radius: 0;
-      font-size: 2.2rem;
-    }
-
-    @media (max-width: 900px) {
-      .pc-proofish .proj-banner {
-        width: 100%;
-        height: 90px;
-      }
+    .pc-careflow .proj-banner {
+      height: 120px;
     }
 
     .proj-banner::after {
@@ -1370,11 +1339,6 @@
       flex-direction: column;
       gap: 8px;
       flex: 1;
-    }
-
-    .pc-proofish .proj-body {
-      padding: 22px 28px;
-      justify-content: center;
     }
 
     .proj-badge {
@@ -2373,21 +2337,32 @@
             </div>
           </a>
 
-          <!-- Hack Proofish — full width landscape -->
-          <a href="https://github.com/gursharan-brar" target="_blank" rel="noopener" class="proj-card pc-proofish fi d1"
-            data-tilt>
-            <div class="proj-banner pb-pink">
-              <span>🏆</span>
+          <!-- CareFlow AI — Capstone -->
+          <a href="https://github.com/gursharan-brar" target="_blank"
+             rel="noopener" class="proj-card pc-careflow" data-tilt>
+            <div class="proj-banner"
+                 style="background:linear-gradient(135deg,#0ea5e9 0%,#0c1520 100%)">
+              <span>🏥</span>
               <div class="proj-arr">↗</div>
             </div>
             <div class="proj-body">
-              <span class="proj-badge pb-badge-pink">🥇 Best Design — Product Management Calgary</span>
-              <div class="proj-name">Hack Proofish</div>
-              <div class="proj-desc">Award-winning UX design and rapid prototype — won Best Design at the PMC hackathon
-                out of 20+ teams.</div>
+              <span class="proj-badge"
+                    style="background:rgba(14,165,233,.12);color:#38bdf8;
+                           border-color:rgba(14,165,233,.25)">
+                PROJ 309 Capstone · Swift Solutions Group 6
+              </span>
+              <div class="proj-name">CareFlow AI</div>
+              <div class="proj-desc">AI operations platform for Calgary
+                walk-in clinics. ServiceNow-style ticket lifecycle, AI
+                triage, real-time AHS health intelligence feed, and
+                automated workflows. Built as AI Lead with a team of 5.
+              </div>
               <div class="pill-row">
-                <span class="pill">UX Design</span><span class="pill">Figma</span><span class="pill">Rapid
-                  Prototyping</span>
+                <span class="pill">Flask</span>
+                <span class="pill">React</span>
+                <span class="pill">Claude API</span>
+                <span class="pill">Azure</span>
+                <span class="pill">Power Automate</span>
               </div>
             </div>
           </a>
