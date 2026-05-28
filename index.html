@@ -1199,7 +1199,7 @@
     .proj-grid {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
-      grid-template-rows: 320px 300px 280px 210px;
+      grid-template-rows: 320px 280px 260px 210px;
       gap: 16px;
     }
 
@@ -1207,26 +1207,20 @@
       grid-area: 1 / 1 / 2 / 3;
     }
 
-    .pc-gapshot {
-      grid-area: 1 / 3 / 3 / 4;
-    }
-
     .pc-campus {
-      grid-area: 2 / 1 / 3 / 2;
+      grid-area: 3 / 1 / 4 / 2;
     }
 
     .pc-email {
-      grid-area: 2 / 2 / 3 / 3;
+      grid-area: 3 / 2 / 4 / 3;
     }
 
     .pc-whereismydata {
-      grid-area: 3 / 1 / 4 / 4;
-      display: flex;
-      flex-direction: row;
+      grid-area: 2 / 1 / 3 / 3;
     }
 
     .pc-proofish {
-      grid-area: 4 / 1 / 5 / 4;
+      grid-area: 4 / 1 / 5 / 3;
       display: flex;
       flex-direction: row;
     }
@@ -1238,7 +1232,6 @@
       }
 
       .pc-bridgeup,
-      .pc-gapshot,
       .pc-campus,
       .pc-email {
         grid-area: auto;
@@ -1309,8 +1302,7 @@
       font-size: 1.8rem;
     }
 
-    .pc-proofish .proj-banner,
-    .pc-whereismydata .proj-banner {
+    .pc-proofish .proj-banner {
       width: 36%;
       height: 100%;
       border-radius: 0;
@@ -1318,8 +1310,7 @@
     }
 
     @media (max-width: 900px) {
-      .pc-proofish .proj-banner,
-      .pc-whereismydata .proj-banner {
+      .pc-proofish .proj-banner {
         width: 100%;
         height: 90px;
       }
@@ -1381,8 +1372,7 @@
       flex: 1;
     }
 
-    .pc-proofish .proj-body,
-    .pc-whereismydata .proj-body {
+    .pc-proofish .proj-body {
       padding: 22px 28px;
       justify-content: center;
     }
@@ -2328,24 +2318,6 @@
                 — built end-to-end from concept to deployment.</div>
               <div class="pill-row">
                 <span class="pill">React</span><span class="pill">Airtable</span><span class="pill">Anthropic API</span>
-              </div>
-            </div>
-          </a>
-
-          <!-- GapShot — tall portrait 1/3 -->
-          <a href="https://github.com/gursharan-brar" target="_blank" rel="noopener" class="proj-card pc-gapshot fi d1"
-            data-tilt>
-            <div class="proj-banner pb-purple">
-              <span>🎯</span>
-              <div class="proj-arr">↗</div>
-            </div>
-            <div class="proj-body">
-              <span class="proj-badge pb-badge-purple">Databricks Hackathon</span>
-              <div class="proj-name">GapShot</div>
-              <div class="proj-desc">AI Career Readiness Platform with drag-and-drop resume analysis. Built at the
-                InceptionU × Databricks hackathon.</div>
-              <div class="pill-row">
-                <span class="pill">Databricks</span><span class="pill">React</span>
               </div>
             </div>
           </a>
