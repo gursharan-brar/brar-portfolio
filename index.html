@@ -5,12 +5,26 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
-    content="Gursharan Brar — IT Student, Builder, and Co-Founder based in Calgary, AB. Group Lead + AI Lead on CareFlow AI, building BridgeUp, and shipping at SAIT and every hackathon I can find." />
+    content="Gursharan Brar — IT graduate and builder based in Calgary, AB. Group Lead + AI Lead on CareFlow AI, founder of Northline IT, and full-stack developer shipping live client work." />
   <title>Gursharan S Brar</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Geist:wght@300;400;500;700;800;900&display=swap"
     rel="stylesheet" />
+
+  <script>
+    // Progressive-enhancement flag: JS-off keeps everything visible; JS-on enables reveal animations.
+    // Also detect reduced-motion preference so CSS can short-circuit motion.
+    (function () {
+      var root = document.documentElement;
+      root.classList.add('js');
+      try {
+        if (window.matchMedia && matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          root.classList.add('reduce-motion');
+        }
+      } catch (e) { }
+    })();
+  </script>
 
   <style>
     /* ─────────────────────────────────────────────
@@ -531,11 +545,13 @@
 
     /* Name — masked slide-up reveal */
     .hero-name {
-      font-size: clamp(4rem, 10.5vw, 9rem);
+      font-size: clamp(2.6rem, 14vw, 9rem);
       font-weight: 900;
       letter-spacing: -.04em;
       margin-bottom: 20px;
       line-height: .88;
+      max-width: 100%;
+      word-break: break-word;
     }
 
     .name-line {
@@ -565,12 +581,14 @@
 
     /* Tagline */
     .hero-tagline {
-      font-size: clamp(.78rem, 1.4vw, .88rem);
+      font-size: clamp(.72rem, 1.4vw, .88rem);
       color: var(--muted);
-      letter-spacing: .16em;
+      letter-spacing: .12em;
       text-transform: uppercase;
       margin-bottom: 18px;
       min-height: 1.4em;
+      max-width: 100%;
+      overflow-wrap: break-word;
       opacity: 0;
       animation: fadeUp .6s ease 1.3s forwards;
     }
@@ -803,12 +821,16 @@
     .about-rule {
       height: 2px;
       background: linear-gradient(to right, var(--accent), transparent);
-      width: 0;
+      width: 100%;
       margin: 24px 0 28px;
+    }
+
+    html.js .about-rule {
+      width: 0;
       transition: width 1.3s cubic-bezier(.4, 0, .2, 1);
     }
 
-    .about-rule.in {
+    html.js .about-rule.in {
       width: 100%;
     }
 
@@ -887,6 +909,15 @@
     #work {
       position: relative;
       overflow: hidden;
+      padding: 120px 0 0;
+    }
+
+    .work-hd {
+      max-width: 1200px;
+      margin: 0 auto 48px;
+      padding: 0 40px;
+      position: relative;
+      z-index: 2;
     }
 
     .panels-outer {
@@ -911,7 +942,7 @@
 
     .panels-wrap {
       display: flex;
-      height: 100vh;
+      min-height: 520px;
       position: relative;
       z-index: 1;
     }
@@ -923,8 +954,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: flex-basis .55s cubic-bezier(.4, 0, .2, 1);
-      padding: 80px 60px;
+      padding: 96px 60px;
     }
 
     .panel-left {
@@ -958,15 +988,6 @@
       opacity: 1;
     }
 
-    /* expanded / shrunk */
-    .panel.expanded {
-      flex-basis: 65%;
-    }
-
-    .panel.shrunk {
-      flex-basis: 35%;
-    }
-
     /* thin accent line at top of panel */
     .panel-left::after {
       content: '';
@@ -991,7 +1012,8 @@
     }
 
     .panel-content {
-      max-width: 420px;
+      max-width: 460px;
+      width: 100%;
     }
 
     .panel-num {
@@ -1041,34 +1063,26 @@
     .panel-tag {
       background: rgba(255, 255, 255, .04);
       border: 1px solid var(--border);
-      color: var(--muted);
+      color: var(--text);
       padding: 6px 12px;
       border-radius: 100px;
       font-size: .78rem;
       font-weight: 500;
-      opacity: .45;
-      transform: translateY(5px);
-      transition: opacity .28s ease, transform .28s ease, color .2s, border-color .2s, background .2s;
-    }
-
-    .panel.expanded .panel-tag {
       opacity: 1;
       transform: none;
+      transition: color .2s, border-color .2s, background .2s;
     }
 
-    .panel.expanded .panel-tag:hover {
+    .panel-left .panel-tag:hover {
       color: var(--accent);
       border-color: var(--ba);
       background: rgba(94, 234, 212, .07);
     }
 
-    .panel-left.expanded .panel-tag {
-      --tc: var(--accent);
-    }
-
-    .panel-right.expanded .panel-tag:hover {
+    .panel-right .panel-tag:hover {
       color: #a78bfa;
       border-color: rgba(167, 139, 250, .35);
+      background: rgba(124, 58, 237, .07);
     }
 
     /* stagger for tags */
@@ -1208,18 +1222,42 @@
       width: 100%;
     }
 
-    /* Remove all pc- grid-area rules */
-    .pc-bridgeup, .pc-campus, .pc-email,
-    .pc-whereismydata, .pc-careflow { }
-
-    /* BridgeUp spans full width */
-    .pc-bridgeup {
-      column-span: all;
-    }
-
     /* WhereIsMyData spans full width */
     .pc-whereismydata {
       column-span: all;
+    }
+
+    /* Indian Tandoori Hut spans full width */
+    .pc-ith {
+      column-span: all;
+    }
+
+    .pb-ith {
+      background: linear-gradient(135deg, #f59e0b 0%, #7c2d12 55%, #0c1520 100%);
+    }
+
+    .proj-banner-photo {
+      position: relative;
+    }
+
+    .proj-banner-photo img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .proj-banner-ph {
+      font-size: .74rem !important;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, .82);
+      background: rgba(0, 0, 0, .35);
+      border: 1px dashed rgba(255, 255, 255, .35);
+      padding: 10px 16px;
+      border-radius: 6px;
     }
 
     @media (max-width: 900px) {
@@ -1283,6 +1321,16 @@
 
     .pc-careflow .proj-banner {
       height: 120px;
+    }
+
+    .pc-ith .proj-banner {
+      height: 320px;
+    }
+
+    @media (max-width: 560px) {
+      .pc-ith .proj-banner {
+        height: 200px;
+      }
     }
 
     .proj-banner::after {
@@ -1443,6 +1491,41 @@
       padding-left: 36px;
     }
 
+    /* timeline group heading */
+    .tl-group-hd {
+      display: flex;
+      align-items: baseline;
+      gap: 14px;
+      padding: 8px 0 24px;
+      margin-top: 12px;
+      position: relative;
+    }
+
+    .tl-group-hd:first-of-type {
+      margin-top: 0;
+    }
+
+    .tl-group-hd + .tl-item {
+      padding-top: 4px;
+    }
+
+    .tl-group-num {
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+      position: relative;
+      left: -4px;
+    }
+
+    .tl-group-title {
+      font-size: clamp(1.15rem, 1.6vw, 1.35rem);
+      font-weight: 800;
+      letter-spacing: -.01em;
+      color: var(--text);
+    }
+
     .tl-track {
       position: absolute;
       left: 0;
@@ -1472,6 +1555,11 @@
     .tl-item {
       position: relative;
       padding: 0 0 44px 36px;
+      opacity: 1;
+      transform: none;
+    }
+
+    html.js .tl-item {
       opacity: 0;
       transform: translateX(-28px);
       transition: opacity .65s cubic-bezier(.4, 0, .2, 1), transform .65s cubic-bezier(.4, 0, .2, 1);
@@ -1481,7 +1569,7 @@
       padding-bottom: 0;
     }
 
-    .tl-item.in {
+    html.js .tl-item.in {
       opacity: 1;
       transform: none;
     }
@@ -1574,93 +1662,107 @@
     }
 
     /* ─────────────────────────────────────────────
-     12. SKILLS TICKER
+     12. SKILLS — static categories
   ───────────────────────────────────────────── */
     #skills {
       background: var(--surface);
+      position: relative;
       overflow: hidden;
-      padding: 80px 0;
+      padding: 120px 0 140px;
     }
 
-    .skills-hd {
-      max-width: 1100px;
-      margin: 0 auto 44px;
-      padding: 0 40px;
-    }
-
-    .ticker-mask {
-      overflow: hidden;
-      mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
-      -webkit-mask-image: linear-gradient(to right, transparent, #000 12%, #000 88%, transparent);
-    }
-
-    .ticker-row {
-      display: flex;
-      width: max-content;
-    }
-
-    .ticker-row:first-of-type {
-      animation: tkL 30s linear infinite;
-    }
-
-    .ticker-row:last-of-type {
-      animation: tkR 24s linear infinite;
-      margin-top: 10px;
-    }
-
-    .ticker-mask:hover .ticker-row {
-      animation-play-state: paused;
-    }
-
-    @keyframes tkL {
-      from {
-        transform: translateX(0);
-      }
-
-      to {
-        transform: translateX(-50%);
-      }
-    }
-
-    @keyframes tkR {
-      from {
-        transform: translateX(-50%);
-      }
-
-      to {
-        transform: translateX(0);
-      }
-    }
-
-    .tk {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 10px 22px;
-      margin: 0 7px;
+    .skills-bg-num {
+      position: absolute;
+      top: 8%;
+      right: -3%;
+      font-size: clamp(8rem, 22vw, 20rem);
+      font-weight: 900;
+      color: rgba(255, 255, 255, .018);
+      pointer-events: none;
+      user-select: none;
+      letter-spacing: -.06em;
+      line-height: 1;
+      z-index: 0;
       white-space: nowrap;
-      font-size: .84rem;
-      font-weight: 500;
-      color: var(--muted);
-      transition: color .25s, border-color .25s, transform .25s cubic-bezier(.175, .885, .32, 1.275), box-shadow .25s;
     }
 
-    .tk:hover {
+    .skills-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 40px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .skill-cats {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px 48px;
+    }
+
+    @media (min-width: 1024px) {
+      .skill-cats {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 44px 32px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .skill-cats {
+        grid-template-columns: 1fr;
+        gap: 36px;
+      }
+    }
+
+    .skill-cat {
+      position: relative;
+    }
+
+    .skill-cat-hd {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 18px;
+      padding-bottom: 12px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .skill-cat-num {
+      font-size: .7rem;
+      font-weight: 700;
+      letter-spacing: .18em;
+      color: var(--accent);
+      font-variant-numeric: tabular-nums;
+    }
+
+    .skill-cat-title {
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: -.01em;
+      color: var(--text);
+    }
+
+    .skill-cat-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-cat-pills .pill {
+      background: rgba(255, 255, 255, .04);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 6px 12px;
+      border-radius: 100px;
+      font-size: .78rem;
+      font-weight: 500;
+      transition: color .2s, border-color .2s, background .2s;
+    }
+
+    .skill-cat-pills .pill:hover {
       color: var(--accent);
       border-color: var(--ba);
-      transform: translateY(-3px) scale(1.04);
-      box-shadow: 0 8px 22px rgba(0, 0, 0, .35);
-    }
-
-    .tk-d {
-      width: 5px;
-      height: 5px;
-      background: var(--accent);
-      border-radius: 50%;
-      flex-shrink: 0;
+      background: rgba(94, 234, 212, .07);
     }
 
     /* ─────────────────────────────────────────────
@@ -1830,13 +1932,19 @@
     /* ─────────────────────────────────────────────
      15. SCROLL REVEAL UTILITIES
   ───────────────────────────────────────────── */
+    /* Default: content is visible. JS opts into the reveal animation via html.js. */
     .fi {
+      opacity: 1;
+      transform: none;
+    }
+
+    html.js .fi {
       opacity: 0;
       transform: translateY(30px);
       transition: opacity .7s cubic-bezier(.4, 0, .2, 1), transform .7s cubic-bezier(.4, 0, .2, 1);
     }
 
-    .fi.in {
+    html.js .fi.in {
       opacity: 1;
       transform: none;
     }
@@ -1908,64 +2016,71 @@
     }
 
     .tmn-inner {
-      max-width: 760px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 0 40px;
       position: relative;
       z-index: 1;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
     }
 
-    .tmn-label {
-      font-size: .68rem;
-      font-weight: 700;
-      letter-spacing: .22em;
-      text-transform: uppercase;
-      color: var(--accent);
-      display: block;
-      margin-bottom: 48px;
-    }
-
-    .tmn-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 48px;
-      border-left: 3px solid var(--accent);
-      position: relative;
+    .tmn-hd {
       text-align: left;
+      margin-bottom: 40px;
     }
 
-    .tmn-card::before {
-      content: '\201C';
-      position: absolute;
-      top: 20px;
-      left: 32px;
-      font-size: 6rem;
+    .tmn-hd .sec-title {
+      max-width: 700px;
+    }
+
+    .tmn-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    @media (max-width: 900px) {
+      .tmn-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Testimonial card = project card, with a taller banner + quote-mark motif */
+    .tmn-card .proj-banner {
+      height: 140px;
+    }
+
+    .tmn-mark {
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: 9rem;
       line-height: 1;
-      color: var(--accent);
-      opacity: .4;
-      font-family: Georgia, serif;
+      color: rgba(255, 255, 255, .35);
+      position: absolute;
+      top: -18px;
+      left: 26px;
+      user-select: none;
       pointer-events: none;
+      font-weight: 700;
+      text-shadow: 0 4px 24px rgba(0, 0, 0, .35);
     }
 
     .tmn-quote {
-      font-size: 1.3rem;
+      font-size: .96rem;
+      line-height: 1.75;
+      color: var(--text);
+      margin-bottom: 16px;
       font-weight: 300;
-      line-height: 1.9;
-      color: #eae5ec;
-      padding-top: 32px;
     }
 
-    .tmn-attr {
-      margin-top: 32px;
-      padding-top: 24px;
+    .tmn-role-sub {
+      font-size: .76rem;
+      color: var(--muted);
+      padding-top: 14px;
+      margin-top: 4px;
       border-top: 1px solid var(--border);
+      line-height: 1.5;
     }
 
+    /* Legacy .tmn-name/.tmn-role styles retained (unused after refactor) */
     .tmn-name {
       font-size: .9rem;
       font-style: italic;
@@ -2063,6 +2178,127 @@
       }
     }
 
+    /* ─────────────────────────────────────────────
+     17. ABOUT-BEYOND (folded strengths inside About)
+  ───────────────────────────────────────────── */
+    .about-inner .about-beyond {
+      grid-column: 1 / -1;
+      margin-top: 32px;
+      padding-top: 44px;
+      border-top: 1px solid var(--border);
+    }
+
+    .about-sublabel {
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--accent);
+      display: block;
+      margin-bottom: 20px;
+    }
+
+    .about-beyond .beyond-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    @media (max-width: 900px) {
+      .about-beyond .beyond-cards {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* ─────────────────────────────────────────────
+     18. REDUCED-MOTION & GLOBAL FALLBACKS
+     Users who set prefers-reduced-motion get the design without motion.
+  ───────────────────────────────────────────── */
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      /* Kill floating orbs / decorative motion */
+      .orb {
+        animation: none !important;
+      }
+
+      /* Fade-in reveals: show content immediately */
+      html.js .fi,
+      html.js .tl-item {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      html.js .about-rule {
+        width: 100% !important;
+      }
+
+      /* No custom cursor */
+      body {
+        cursor: auto !important;
+      }
+
+      /* Hide typewriter caret */
+      .cur-blink {
+        display: none !important;
+      }
+    }
+
+    /* ─────────────────────────────────────────────
+     19. EDITORIAL POLISH — larger section numbering,
+     tighter card metadata for skills row.
+  ───────────────────────────────────────────── */
+    .sec-title {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+    }
+
+    .about-title {
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
+    }
+
+    .about-body + .about-body {
+      margin-top: 18px;
+    }
+
+    /* Compact stat row option (used on new About) */
+    .stat-row-compact {
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .stat-row-compact .stat {
+      padding: 22px 20px;
+    }
+
+    .stat-row-compact .stat-num {
+      font-size: 2rem;
+    }
+
+    @media (max-width: 900px) {
+      .stat-row-compact {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .stat-row-compact {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    /* Ensure no accidental horizontal scroll */
+    html, body {
+      max-width: 100%;
+      overflow-x: hidden;
+    }
+
   </style>
 </head>
 
@@ -2082,8 +2318,9 @@
 
   <!-- ══ MOBILE NAV OVERLAY ════════════════════ -->
   <div id="mob-nav">
+    <a href="#projects" class="mob-link">Work</a>
     <a href="#about" class="mob-link">About</a>
-    <a href="#projects" class="mob-link">Projects</a>
+    <a href="#work" class="mob-link">Capabilities</a>
     <a href="#experience" class="mob-link">Experience</a>
     <a href="#contact" class="mob-link">Contact</a>
   </div>
@@ -2097,8 +2334,9 @@
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-links">
+      <li><a href="#projects">Work</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#projects">Projects</a></li>
+      <li><a href="#work">Capabilities</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
@@ -2116,17 +2354,17 @@
       <div class="hero-inner" id="hero-inner">
         <div class="hero-badge">
           <span class="bdot"></span>
-          Open to opportunities &nbsp;·&nbsp; Calgary, AB
+          Available for entry-level IT roles &nbsp;·&nbsp; Calgary, AB
         </div>
         <div class="hero-name" aria-label="Gursharan Brar">
           <div class="name-line"><span class="name-text">GURSHARAN</span></div>
           <div class="name-line"><span class="name-text">BRAR</span></div>
         </div>
-        <p class="hero-tagline"><span id="typewriter"></span><span class="cur-blink">|</span></p>
+        <p class="hero-tagline"><span id="typewriter">SAIT · CareFlow AI · Full-Stack Builder</span><span class="cur-blink">|</span></p>
         <p class="hero-oneliner">
-          Group Lead + AI Lead on <strong>CareFlow AI</strong>, an AI-powered clinic operations platform.
-          Building <strong>BridgeUp</strong> — a fraud prevention platform protecting Canadian seniors
-          at credit unions. Shipping at <strong>SAIT</strong> and every hackathon I can find.
+          IT Services grad out of <strong>SAIT</strong>. Group Lead + AI Lead on <strong>CareFlow AI</strong>
+          — final showcase 29/30. Founder of <strong>Northline IT</strong>, and shipping full-stack
+          work for a real paying client at <strong>indiantandoorihutz.com</strong>.
         </p>
         <div class="hero-btns">
           <a href="#projects" class="btn btn-p">See my work</a>
@@ -2139,142 +2377,18 @@
       </div>
     </section>
 
-    <!-- ══ ABOUT ═════════════════════════════════ -->
-    <section id="about">
-      <span class="about-sec-num" aria-hidden="true">01</span>
-      <div class="about-inner">
-        <div class="fi">
-          <span class="about-label">About me</span>
-          <h2 class="about-title">More than just<br>an IT guy.</h2>
-          <div class="about-rule" id="about-rule"></div>
-          <p class="about-body">
-            Before I ever touched a server, I spent years in customer-facing roles —
-            <strong>Best Buy Canada, 7-Eleven, Reliance Smart</strong> — learning how to listen, stay calm
-            under pressure, and explain complicated things to people who just want their problem solved.
-            That background shapes how I approach IT: I care about the person on the other end, not just
-            the ticket. I volunteer at the <span class="hl">Calgary Drop-In Centre</span> and serve at
-            my local Gurdwara because service is something I was raised with, not something I do for a resume.
-            My industry mentor <strong>Bonnie Nasim</strong> put it well when she said I
-            <em>"consistently demonstrate outstanding values, compassion, and kindness"</em> — and honestly,
-            I think that matters in IT just as much as knowing your way around a VLAN.
-            I'm fluent in <strong>Punjabi and English</strong>, I've co-founded two products with teammates,
-            and I always make sure everyone's on the same page before we ship something.
-            I'm finishing my <strong>IT Services Diploma at SAIT</strong> (SADT stream), graduating
-            <span class="hl">August 2026</span>. Right now I'm Group Lead and AI Lead on
-            <strong>CareFlow AI</strong>, a capstone team project building an AI operations platform
-            for Calgary walk-in clinics — and I picked up a <span class="hl">Best Design Award</span>
-            at the PMC Product Sprint Hackathon along the way.
-          </p>
-        </div>
-        <div class="stat-grid">
-          <div class="stat fi d1">
-            <div class="stat-num" data-target="15" data-suffix="+">0</div>
-            <div class="stat-lbl">Lab environments built</div>
-          </div>
-          <div class="stat fi d2">
-            <div class="stat-num" data-target="2">0</div>
-            <div class="stat-lbl">Products co-founded</div>
-          </div>
-          <div class="stat fi d4">
-            <div class="stat-num" data-target="2">0</div>
-            <div class="stat-lbl">Years of IT training</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══ BEYOND THE TECH ════════════════════════ -->
-    <section id="beyond">
-      <span class="beyond-bg-num" aria-hidden="true">00</span>
-      <div class="beyond-inner">
-        <div class="beyond-hd sec-header fi">
-          <span class="sec-label-sm">Beyond the tech</span>
-          <h2 class="sec-title">The stuff that<br>doesn't fit a CV.</h2>
-        </div>
-        <div class="beyond-cards">
-          <div class="beyond-card fi d1">
-            <span class="beyond-icon">🤝</span>
-            <div class="beyond-card-title">Sales &amp; Customer Experience</div>
-            <p class="beyond-card-desc">3+ years across Best Buy Canada, 7-Eleven, and retail in India. I know how to listen, explain complex things simply, handle frustrated people calmly, and close the loop. That translates directly into great help desk and client-facing IT work.</p>
-          </div>
-          <div class="beyond-card fi d2">
-            <span class="beyond-icon">🧩</span>
-            <div class="beyond-card-title">Team-First Mindset</div>
-            <p class="beyond-card-desc">I co-founded two products, led UI on a hackathon team, and always make sure everyone knows what's happening. I'm the person who asks questions early so the team doesn't hit problems late.</p>
-          </div>
-          <div class="beyond-card fi d3">
-            <span class="beyond-icon">🌱</span>
-            <div class="beyond-card-title">Values &amp; Community</div>
-            <p class="beyond-card-desc">I volunteer at the Calgary Drop-In Centre and serve langar at my local Gurdwara. Service isn't something I do for a resume — it's just how I was raised. I bring that same mindset into every team I'm part of.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ══ WHAT I DO ══════════════════════════════ -->
-    <section id="work">
-      <div class="panels-outer">
-        <span class="panels-bg-num" aria-hidden="true">02</span>
-        <div class="panels-wrap" id="panels-wrap">
-          <!-- Left panel: Infrastructure -->
-          <div class="panel panel-left" id="panel-l">
-            <div class="panel-content">
-              <div class="panel-num" aria-hidden="true">01</div>
-              <div class="panel-ico">🖥️</div>
-              <div class="panel-cat">Enterprise Networking &amp; Infrastructure</div>
-              <h3 class="panel-title">Systems &amp;<br>Networks</h3>
-              <p style="font-size:.88rem;color:#8b8fa8;line-height:1.7;margin-bottom:20px;">Designing and managing enterprise-grade lab environments — routing protocols, server roles, virtualisation, and network security from the ground up.</p>
-              <div class="panel-tags">
-                <span class="panel-tag">Windows Server</span>
-                <span class="panel-tag">Active Directory</span>
-                <span class="panel-tag">Proxmox VE</span>
-                <span class="panel-tag">OSPF / EIGRP</span>
-                <span class="panel-tag">pfSense</span>
-                <span class="panel-tag">VPN / IPsec</span>
-                <span class="panel-tag">Wireshark</span>
-                <span class="panel-tag">DHCP / DNS</span>
-                <span class="panel-tag">Linux</span>
-              </div>
-            </div>
-          </div>
-          <div class="panel-divider"></div>
-          <!-- Right panel: Development -->
-          <div class="panel panel-right" id="panel-r">
-            <div class="panel-content">
-              <div class="panel-num" aria-hidden="true">02</div>
-              <div class="panel-ico">⚙️</div>
-              <div class="panel-cat">ITSM &amp; Dev</div>
-              <h3 class="panel-title">Automation &amp;<br>Service Delivery</h3>
-              <p style="font-size:.88rem;color:#8b8fa8;line-height:1.7;margin-bottom:20px;">Bridging IT operations and software delivery — building ITSM workflows, CI/CD pipelines, and full-stack tools that solve real operational problems.</p>
-              <div class="panel-tags">
-                <span class="panel-tag">ServiceNow ITSM</span>
-                <span class="panel-tag">GitHub Actions</span>
-                <span class="panel-tag">Docker</span>
-                <span class="panel-tag">React / TypeScript</span>
-                <span class="panel-tag">Python</span>
-                <span class="panel-tag">Power Apps</span>
-                <span class="panel-tag">Power Automate</span>
-                <span class="panel-tag">Anthropic API</span>
-                <span class="panel-tag">ITIL</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- ══ PROJECTS ═══════════════════════════════ -->
     <section id="projects">
-      <span class="projects-bg-num" aria-hidden="true">03</span>
+      <span class="projects-bg-num" aria-hidden="true">01</span>
       <div class="projects-inner">
         <div class="sec-header fi">
           <span class="sec-label-sm">Selected work</span>
-          <h2 class="sec-title">Things I've built</h2>
+          <h2 class="sec-title">Things I've built.</h2>
         </div>
         <div class="proj-grid">
 
           <!-- CareFlow AI — Capstone -->
-          <a href="https://github.com/gursharan-brar" target="_blank"
+          <a href="https://github.com/gursharan-brar/careflow-ai" target="_blank"
              rel="noopener" class="proj-card pc-careflow fi" data-tilt>
             <div class="proj-banner"
                  style="background:linear-gradient(135deg,#0ea5e9 0%,#0c1520 100%)">
@@ -2285,13 +2399,13 @@
               <span class="proj-badge"
                     style="background:rgba(14,165,233,.12);color:#38bdf8;
                            border-color:rgba(14,165,233,.25)">
-                PROJ 309 Capstone · Sprint 1: 27/30
+                PROJ 309 Capstone · Final Showcase · 29/30
               </span>
               <div class="proj-name">CareFlow AI</div>
               <div class="proj-desc">AI-powered clinic operations platform for Calgary walk-in clinics.
                 ServiceNow-style ticket lifecycle, AI triage via Claude Haiku, live patient queue,
-                staff dashboard, and two sandboxed chatbots. Built as Group Lead + AI Lead with
-                Swift Solutions Group 6, now being adapted for solo commercialization. CAPCON Aug 20, 2026.
+                staff dashboard, and two sandboxed chatbots. Group Lead + AI Lead with Swift Solutions
+                Group 6.
               </div>
               <div class="pill-row">
                 <span class="pill">Flask</span>
@@ -2304,20 +2418,25 @@
             </div>
           </a>
 
-          <!-- BridgeUp — 2/3 wide -->
-          <a href="https://github.com/gursharan-brar" target="_blank" rel="noopener" class="proj-card pc-bridgeup fi"
-            data-tilt>
-            <div class="proj-banner pb-teal">
-              <span>🛡️</span>
+          <!-- Indian Tandoori Hut — paying client, live -->
+          <a href="https://indiantandoorihutz.com" target="_blank" rel="noopener"
+             class="proj-card pc-ith" data-tilt>
+            <div class="proj-banner proj-banner-photo pb-ith">
+              <!-- SCREENSHOT PLACEHOLDER: replace this block with an <img src="..." alt="Indian Tandoori Hut homepage"> -->
+              <span class="proj-banner-ph">SCREENSHOT · replace this block</span>
               <div class="proj-arr">↗</div>
             </div>
             <div class="proj-body">
-              <span class="proj-badge pb-badge-teal">Co-Founded · Pre-Revenue</span>
-              <div class="proj-name">BridgeUp</div>
-              <div class="proj-desc">B2B fraud prevention coaching platform connecting youth coaches with seniors,
-                sold to credit unions and banks — post-seed-pitch, built end-to-end from concept to deployment.</div>
+              <span class="proj-badge pb-badge-orange">Client Work · Live</span>
+              <div class="proj-name">indiantandoorihutz.com</div>
+              <div class="proj-desc">Full-stack ordering and reservation platform for a real paying client.
+                Online ordering with per-village delivery zones and minimum-order logic, PayPal checkout,
+                staff-gated reservation approval, and a staff dashboard for orders and bookings.</div>
               <div class="pill-row">
-                <span class="pill">React</span><span class="pill">Airtable</span><span class="pill">Anthropic API</span>
+                <span class="pill">Next.js</span>
+                <span class="pill">Cloudflare Workers</span>
+                <span class="pill">D1</span>
+                <span class="pill">PayPal</span>
               </div>
             </div>
           </a>
@@ -2413,6 +2532,222 @@
       </div>
     </section>
 
+    <!-- ══ ABOUT ═════════════════════════════════ -->
+    <section id="about">
+      <span class="about-sec-num" aria-hidden="true">02</span>
+      <div class="about-inner">
+        <div class="fi">
+          <span class="about-label">About me</span>
+          <h2 class="about-title">More than just<br>an IT guy.</h2>
+          <div class="about-rule" id="about-rule"></div>
+
+          <p class="about-body">
+            Before I ever touched a server, I spent years in customer-facing roles —
+            <strong>Best Buy Canada, 7-Eleven, Reliance Smart</strong> — learning to listen,
+            stay calm under pressure, and explain complicated things to people who just want
+            their problem solved. That shapes how I approach IT: I care about the person on
+            the other end, not just the ticket.
+          </p>
+
+          <p class="about-body">
+            I graduated from SAIT's <strong>IT Services Diploma</strong> (SADT stream).
+            I was Group Lead + AI Lead on <strong>CareFlow AI</strong> — final showcase
+            <span class="hl">29/30</span> — founded <strong>Northline IT</strong> to serve
+            Calgary SMBs, and picked up a <span class="hl">Best Design Award</span> at the
+            PMC Product Sprint Hackathon. I'm fluent in <strong>Punjabi and English</strong>,
+            and I always make sure everyone's on the same page before we ship.
+          </p>
+
+          <p class="about-body">
+            My industry mentor <strong>Bonnie Nasim</strong> put it well when she said I
+            <em>"consistently demonstrate outstanding values, compassion, and kindness"</em> —
+            and honestly, that matters in IT just as much as knowing your way around a VLAN.
+            I volunteer at the <span class="hl">Calgary Drop-In Centre</span> and serve at
+            my local Gurdwara because service is something I was raised with.
+          </p>
+        </div>
+
+        <div class="stat-grid stat-row-compact">
+          <div class="stat fi d1">
+            <div class="stat-num" data-target="15" data-suffix="+">15+</div>
+            <div class="stat-lbl">Lab environments built</div>
+          </div>
+          <div class="stat fi d2">
+            <div class="stat-num" data-target="1">1</div>
+            <div class="stat-lbl">IT venture founded</div>
+          </div>
+          <div class="stat fi d4">
+            <div class="stat-num" data-target="2">2</div>
+            <div class="stat-lbl">Years of IT training</div>
+          </div>
+        </div>
+
+        <!-- Folded from #beyond -->
+        <div class="about-beyond">
+          <span class="about-sublabel">Beyond the tech</span>
+          <div class="beyond-cards">
+            <div class="beyond-card fi d1">
+              <span class="beyond-icon">🤝</span>
+              <div class="beyond-card-title">Sales &amp; Customer Experience</div>
+              <p class="beyond-card-desc">3+ years across Best Buy Canada, 7-Eleven, and retail in India. I listen, explain complex things simply, handle frustrated people calmly, and close the loop. Translates directly into help desk and client-facing IT.</p>
+            </div>
+            <div class="beyond-card fi d2">
+              <span class="beyond-icon">🧩</span>
+              <div class="beyond-card-title">Team-First Mindset</div>
+              <p class="beyond-card-desc">Founded an IT services venture, led UI on a hackathon team, and helm the AI stack on my capstone. I'm the person who asks questions early so the team doesn't hit problems late.</p>
+            </div>
+            <div class="beyond-card fi d3">
+              <span class="beyond-icon">🌱</span>
+              <div class="beyond-card-title">Values &amp; Community</div>
+              <p class="beyond-card-desc">I volunteer at the Calgary Drop-In Centre and serve langar at my local Gurdwara. Service isn't for a resume — it's how I was raised.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ CAPABILITIES & SKILLS ══════════════════ -->
+    <section id="work">
+      <div class="work-hd sec-header fi">
+        <span class="sec-label-sm">Capabilities</span>
+        <h2 class="sec-title">What I do.</h2>
+      </div>
+      <div class="panels-outer">
+        <span class="panels-bg-num" aria-hidden="true">03</span>
+        <div class="panels-wrap" id="panels-wrap">
+          <!-- Left panel: Infrastructure -->
+          <div class="panel panel-left" id="panel-l">
+            <div class="panel-content">
+              <div class="panel-num" aria-hidden="true">01</div>
+              <div class="panel-ico">🖥️</div>
+              <div class="panel-cat">Enterprise Networking &amp; Infrastructure</div>
+              <h3 class="panel-title">Systems &amp;<br>Networks</h3>
+              <p style="font-size:.88rem;color:#8b8fa8;line-height:1.7;margin-bottom:20px;">Designing and managing enterprise-grade lab environments — routing protocols, server roles, virtualisation, and network security from the ground up.</p>
+              <div class="panel-tags">
+                <span class="panel-tag">Windows Server</span>
+                <span class="panel-tag">Active Directory</span>
+                <span class="panel-tag">Proxmox VE</span>
+                <span class="panel-tag">OSPF / EIGRP</span>
+                <span class="panel-tag">pfSense</span>
+                <span class="panel-tag">VPN / IPsec</span>
+                <span class="panel-tag">Wireshark</span>
+                <span class="panel-tag">DHCP / DNS</span>
+                <span class="panel-tag">Linux</span>
+              </div>
+            </div>
+          </div>
+          <div class="panel-divider"></div>
+          <!-- Right panel: Development -->
+          <div class="panel panel-right" id="panel-r">
+            <div class="panel-content">
+              <div class="panel-num" aria-hidden="true">02</div>
+              <div class="panel-ico">⚙️</div>
+              <div class="panel-cat">ITSM &amp; Dev</div>
+              <h3 class="panel-title">Automation &amp;<br>Service Delivery</h3>
+              <p style="font-size:.88rem;color:#8b8fa8;line-height:1.7;margin-bottom:20px;">Bridging IT operations and software delivery — building ITSM workflows, CI/CD pipelines, and full-stack tools that solve real operational problems.</p>
+              <div class="panel-tags">
+                <span class="panel-tag">ServiceNow ITSM</span>
+                <span class="panel-tag">GitHub Actions</span>
+                <span class="panel-tag">Docker</span>
+                <span class="panel-tag">React / TypeScript</span>
+                <span class="panel-tag">Python</span>
+                <span class="panel-tag">Power Apps</span>
+                <span class="panel-tag">Power Automate</span>
+                <span class="panel-tag">Anthropic API</span>
+                <span class="panel-tag">ITIL</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ══ SKILLS ════════════════════════════════ -->
+    <section id="skills">
+      <span class="skills-bg-num" aria-hidden="true">04</span>
+      <div class="skills-inner">
+        <div class="skills-hd sec-header fi">
+          <span class="sec-label-sm">Tech stack</span>
+          <h2 class="sec-title">Tools I work with.</h2>
+        </div>
+        <div class="skill-cats">
+          <div class="skill-cat fi d1">
+            <div class="skill-cat-hd">
+              <span class="skill-cat-num" aria-hidden="true">01</span>
+              <h3 class="skill-cat-title">Infrastructure</h3>
+            </div>
+            <div class="skill-cat-pills">
+              <span class="pill">Windows Server</span>
+              <span class="pill">Active Directory</span>
+              <span class="pill">Proxmox VE</span>
+              <span class="pill">Linux</span>
+              <span class="pill">Cisco</span>
+              <span class="pill">OSPF / EIGRP</span>
+              <span class="pill">DHCP / DNS</span>
+              <span class="pill">VPN / IPsec</span>
+              <span class="pill">pfSense</span>
+              <span class="pill">FreeRADIUS</span>
+              <span class="pill">Wireshark</span>
+              <span class="pill">Azure</span>
+              <span class="pill">AKS</span>
+              <span class="pill">Kerberos</span>
+            </div>
+          </div>
+          <div class="skill-cat fi d2">
+            <div class="skill-cat-hd">
+              <span class="skill-cat-num" aria-hidden="true">02</span>
+              <h3 class="skill-cat-title">Development</h3>
+            </div>
+            <div class="skill-cat-pills">
+              <span class="pill">React</span>
+              <span class="pill">TypeScript</span>
+              <span class="pill">Next.js</span>
+              <span class="pill">Vanilla JS</span>
+              <span class="pill">Python</span>
+              <span class="pill">Flask</span>
+              <span class="pill">FastAPI</span>
+              <span class="pill">Tailwind</span>
+              <span class="pill">SQLite</span>
+              <span class="pill">Supabase</span>
+              <span class="pill">Cloudflare Workers</span>
+              <span class="pill">D1</span>
+            </div>
+          </div>
+          <div class="skill-cat fi d3">
+            <div class="skill-cat-hd">
+              <span class="skill-cat-num" aria-hidden="true">03</span>
+              <h3 class="skill-cat-title">Automation</h3>
+            </div>
+            <div class="skill-cat-pills">
+              <span class="pill">GitHub Actions</span>
+              <span class="pill">Docker</span>
+              <span class="pill">CI/CD Pipelines</span>
+              <span class="pill">ServiceNow ITSM</span>
+              <span class="pill">ITIL</span>
+              <span class="pill">Power Apps</span>
+              <span class="pill">Power Automate</span>
+              <span class="pill">APScheduler</span>
+              <span class="pill">Railway</span>
+            </div>
+          </div>
+          <div class="skill-cat fi d4">
+            <div class="skill-cat-hd">
+              <span class="skill-cat-num" aria-hidden="true">04</span>
+              <h3 class="skill-cat-title">AI</h3>
+            </div>
+            <div class="skill-cat-pills">
+              <span class="pill">Claude API</span>
+              <span class="pill">Anthropic API</span>
+              <span class="pill">Multi-Agent Systems</span>
+              <span class="pill">Prompt Engineering</span>
+              <span class="pill">RAG Basics</span>
+              <span class="pill">AI Image Gen</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- ══ EXPERIENCE ═════════════════════════════ -->
     <section id="experience">
       <div class="exp-inner">
@@ -2426,20 +2761,34 @@
             <div class="tl-fill" id="tl-fill"></div>
           </div>
 
+          <!-- ── Group 1: Work &amp; Leadership ── -->
+          <div class="tl-group-hd fi">
+            <span class="tl-group-num" aria-hidden="true">01</span>
+            <h3 class="tl-group-title">Work &amp; Leadership</h3>
+          </div>
+
           <div class="tl-item d1">
             <div class="tl-dot"></div>
             <div class="tl-date">2026 – Present</div>
+            <div class="tl-role">Founder</div>
+            <div class="tl-org">Northline IT · Calgary SMB IT and network security services · sourcing first clients</div>
+            <span class="tl-tag tt-founder">FOUNDER</span>
+          </div>
+
+          <div class="tl-item d1">
+            <div class="tl-dot"></div>
+            <div class="tl-date">2026</div>
             <div class="tl-role">Group Lead + AI Lead</div>
-            <div class="tl-org">CareFlow AI · Swift Solutions Group 6, PROJ 309 Capstone</div>
+            <div class="tl-org">CareFlow AI · Swift Solutions Group 6 · PROJ 309 Capstone (29/30 final showcase)</div>
             <span class="tl-tag tt-project">PROJECT</span>
           </div>
 
           <div class="tl-item d1">
             <div class="tl-dot"></div>
             <div class="tl-date">2026</div>
-            <div class="tl-role">Best Design Award</div>
-            <div class="tl-org">PMC Product Sprint Hackathon</div>
-            <span class="tl-tag tt-award">AWARD</span>
+            <div class="tl-role">Full-Stack Developer</div>
+            <div class="tl-org">indiantandoorihutz.com · paying client · Next.js + Cloudflare Workers + D1 + PayPal</div>
+            <span class="tl-tag tt-work">WORK</span>
           </div>
 
           <div class="tl-item d1">
@@ -2454,16 +2803,16 @@
             <div class="tl-dot"></div>
             <div class="tl-date">2026</div>
             <div class="tl-role">RoleRecon</div>
-            <div class="tl-org">5-Agent Career Gap Pipeline · VS Code + GitHub Copilot</div>
-            <span class="tl-tag tt-project">PROJECT</span>
+            <div class="tl-org">5-Agent Career Gap Pipeline · Databricks Hackathon</div>
+            <span class="tl-tag tt-hackathon">HACKATHON</span>
           </div>
 
           <div class="tl-item d1">
             <div class="tl-dot"></div>
-            <div class="tl-date">2026 – Present</div>
-            <div class="tl-role">Co-Founder</div>
-            <div class="tl-org">BridgeUp</div>
-            <span class="tl-tag tt-founder">FOUNDER</span>
+            <div class="tl-date">2026</div>
+            <div class="tl-role">Power Platform Hackathon</div>
+            <div class="tl-org">Campus Incident App · SAIT</div>
+            <span class="tl-tag tt-hackathon">HACKATHON</span>
           </div>
 
           <div class="tl-item d1">
@@ -2482,27 +2831,17 @@
             <span class="tl-tag tt-work">WORK</span>
           </div>
 
-          <div class="tl-item d1">
-            <div class="tl-dot"></div>
-            <div class="tl-date">2026</div>
-            <div class="tl-role">Power Platform Hackathon</div>
-            <div class="tl-org">Campus Incident App · SAIT</div>
-            <span class="tl-tag tt-hackathon">HACKATHON</span>
+          <!-- ── Group 2: Education &amp; Certifications ── -->
+          <div class="tl-group-hd fi">
+            <span class="tl-group-num" aria-hidden="true">02</span>
+            <h3 class="tl-group-title">Education &amp; Certifications</h3>
           </div>
 
           <div class="tl-item d1">
             <div class="tl-dot"></div>
-            <div class="tl-date">2026</div>
-            <div class="tl-role">Databricks Hackathon</div>
-            <div class="tl-org">GapShot · Resume Rating Platform </div>
-            <span class="tl-tag tt-hackathon">HACKATHON</span>
-          </div>
-
-          <div class="tl-item d1">
-            <div class="tl-dot"></div>
-            <div class="tl-date">2025 – Aug 2026</div>
+            <div class="tl-date">2024 – 2026</div>
             <div class="tl-role">IT Services Diploma</div>
-            <div class="tl-org">SAIT · SADT Program</div>
+            <div class="tl-org">SAIT · SADT Program · Graduated</div>
             <span class="tl-tag tt-edu">EDUCATION</span>
           </div>
 
@@ -2524,50 +2863,41 @@
 
           <div class="tl-item d1">
             <div class="tl-dot"></div>
-            <div class="tl-date">2025</div>
-            <div class="tl-role">OSPF Multi-Area Routing Lab</div>
-            <div class="tl-org">SAIT · Enterprise Networking</div>
-            <span class="tl-tag tt-edu">EDUCATION</span>
-          </div>
-
-          <div class="tl-item d1">
-            <div class="tl-dot"></div>
-            <div class="tl-date">2025</div>
-            <div class="tl-role">Windows Server &amp; Active Directory Lab</div>
-            <div class="tl-org">SAIT · Server Administration</div>
-            <span class="tl-tag tt-edu">EDUCATION</span>
-          </div>
-
-          <div class="tl-item d1">
-            <div class="tl-dot"></div>
-            <div class="tl-date">2025</div>
-            <div class="tl-role">Proxmox Virtualisation Cluster</div>
-            <div class="tl-org">SAIT · Systems Infrastructure</div>
-            <span class="tl-tag tt-edu">EDUCATION</span>
-          </div>
-
-          <div class="tl-item d1">
-            <div class="tl-dot"></div>
-            <div class="tl-date">2025</div>
-            <div class="tl-role">ServiceNow ITSM Labs</div>
-            <div class="tl-org">SAIT · IT Service Management</div>
-            <span class="tl-tag tt-edu">EDUCATION</span>
+            <div class="tl-date">2026</div>
+            <div class="tl-role">WIT Cloud Transformation</div>
+            <div class="tl-org">Azure hybrid cloud group project · owned the AKS workstream: Dockerized deployment, autoscaling cluster, monitoring</div>
+            <span class="tl-tag tt-project">PROJECT</span>
           </div>
 
           <div class="tl-item d1">
             <div class="tl-dot"></div>
             <div class="tl-date">2026</div>
-            <div class="tl-role">Network Security &amp; pfSense Lab</div>
-            <div class="tl-org">SAIT · Cybersecurity</div>
+            <div class="tl-role">WPA2-Enterprise WLAN Build</div>
+            <div class="tl-org">CPNT 302 · FreeRADIUS-authenticated enterprise wireless · scored 73/73</div>
             <span class="tl-tag tt-edu">EDUCATION</span>
+          </div>
+
+          <!-- SAIT lab bundle (grouped) -->
+          <div class="tl-item d1">
+            <div class="tl-dot"></div>
+            <div class="tl-date">2025 – 2026</div>
+            <div class="tl-role">SAIT Lab Environments</div>
+            <div class="tl-org">OSPF Multi-Area Routing · Windows Server &amp; Active Directory · Proxmox Virtualisation Cluster · ServiceNow ITSM · Network Security &amp; pfSense · CI/CD Pipeline</div>
+            <span class="tl-tag tt-edu">EDUCATION</span>
+          </div>
+
+          <!-- ── Group 3: Awards ── -->
+          <div class="tl-group-hd fi">
+            <span class="tl-group-num" aria-hidden="true">03</span>
+            <h3 class="tl-group-title">Awards</h3>
           </div>
 
           <div class="tl-item d1">
             <div class="tl-dot"></div>
             <div class="tl-date">2026</div>
-            <div class="tl-role">CI/CD Pipeline Project</div>
-            <div class="tl-org">SAIT · DevOps &amp; Automation</div>
-            <span class="tl-tag tt-edu">EDUCATION</span>
+            <div class="tl-role">Best Design Award</div>
+            <div class="tl-org">PMC Product Sprint Hackathon</div>
+            <span class="tl-tag tt-award">AWARD</span>
           </div>
         </div>
       </div>
@@ -2577,87 +2907,40 @@
     <section id="testimonial">
       <span class="tmn-bg-num" aria-hidden="true">06</span>
       <div class="tmn-inner">
-        <span class="tmn-label">Recognition</span>
-        <div class="tmn-card fi">
-          <p class="tmn-quote">He consistently demonstrates outstanding values, compassion, and kindness in how he
-            interacts with others. Combined with his eagerness to learn and his ability to pick up new concepts quickly,
-            I am confident he would be a very positive and valuable addition to any team.</p>
-          <div class="tmn-attr">
-            <p class="tmn-name">— <span>Bonnie Nasim</span></p>
-            <p class="tmn-role">Knowledge and Communications Manager · SignalCraft Technologies<br></p>
+        <div class="tmn-hd sec-header fi">
+          <span class="sec-label-sm">Recognition</span>
+          <h2 class="sec-title">What people say.</h2>
+        </div>
+        <div class="tmn-grid">
+          <div class="proj-card tmn-card fi d2" data-tilt>
+            <div class="proj-banner tmn-banner pb-teal">
+              <span class="tmn-mark" aria-hidden="true">&ldquo;</span>
+              <div class="proj-arr">↗</div>
+            </div>
+            <div class="proj-body">
+              <span class="proj-badge pb-badge-teal">Mentor · SignalCraft</span>
+              <div class="proj-name">Bonnie Nasim</div>
+              <div class="tmn-quote">He consistently demonstrates outstanding values, compassion, and kindness in how he
+                interacts with others. Combined with his eagerness to learn and his ability to pick up new concepts quickly,
+                I am confident he would be a very positive and valuable addition to any team.</div>
+              <div class="tmn-role-sub">Knowledge and Communications Manager · SignalCraft Technologies</div>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
 
-    <!-- ══ SKILLS ════════════════════════════════ -->
-    <section id="skills">
-      <div class="skills-hd fi">
-        <span class="sec-label-sm">Tech stack</span>
-        <h2 class="sec-title">Tools I work with</h2>
-      </div>
-      <div class="ticker-mask">
-        <div class="ticker-row">
-          <div class="tk"><div class="tk-d"></div>Windows Server</div>
-          <div class="tk"><div class="tk-d"></div>Active Directory</div>
-          <div class="tk"><div class="tk-d"></div>Proxmox VE</div>
-          <div class="tk"><div class="tk-d"></div>Wireshark</div>
-          <div class="tk"><div class="tk-d"></div>DHCP / DNS</div>
-          <div class="tk"><div class="tk-d"></div>OSPF</div>
-          <div class="tk"><div class="tk-d"></div>EIGRP</div>
-          <div class="tk"><div class="tk-d"></div>VPN / IPsec</div>
-          <div class="tk"><div class="tk-d"></div>pfSense</div>
-          <div class="tk"><div class="tk-d"></div>Linux</div>
-          <div class="tk"><div class="tk-d"></div>IIS</div>
-          <div class="tk"><div class="tk-d"></div>Cisco</div>
-          <div class="tk"><div class="tk-d"></div>Windows Server</div>
-          <div class="tk"><div class="tk-d"></div>Active Directory</div>
-          <div class="tk"><div class="tk-d"></div>Proxmox VE</div>
-          <div class="tk"><div class="tk-d"></div>Wireshark</div>
-          <div class="tk"><div class="tk-d"></div>DHCP / DNS</div>
-          <div class="tk"><div class="tk-d"></div>OSPF</div>
-          <div class="tk"><div class="tk-d"></div>EIGRP</div>
-          <div class="tk"><div class="tk-d"></div>VPN / IPsec</div>
-          <div class="tk"><div class="tk-d"></div>pfSense</div>
-          <div class="tk"><div class="tk-d"></div>Linux</div>
-          <div class="tk"><div class="tk-d"></div>IIS</div>
-          <div class="tk"><div class="tk-d"></div>Cisco</div>
-        </div>
-        <div class="ticker-row">
-          <div class="tk"><div class="tk-d"></div>React</div>
-          <div class="tk"><div class="tk-d"></div>TypeScript</div>
-          <div class="tk"><div class="tk-d"></div>Python</div>
-          <div class="tk"><div class="tk-d"></div>GitHub Actions</div>
-          <div class="tk"><div class="tk-d"></div>Docker</div>
-          <div class="tk"><div class="tk-d"></div>ServiceNow</div>
-          <div class="tk"><div class="tk-d"></div>OpenSSL</div>
-          <div class="tk"><div class="tk-d"></div>CyberChef</div>
-          <div class="tk"><div class="tk-d"></div>Kerberos</div>
-          <div class="tk"><div class="tk-d"></div>ITIL</div>
-          <div class="tk"><div class="tk-d"></div>Power Apps</div>
-          <div class="tk"><div class="tk-d"></div>Anthropic API</div>
-          <div class="tk"><div class="tk-d"></div>Claude API</div>
-          <div class="tk"><div class="tk-d"></div>Supabase</div>
-          <div class="tk"><div class="tk-d"></div>Railway</div>
-          <div class="tk"><div class="tk-d"></div>GitHub Actions CI/CD</div>
-          <div class="tk"><div class="tk-d"></div>APScheduler</div>
-          <div class="tk"><div class="tk-d"></div>React</div>
-          <div class="tk"><div class="tk-d"></div>TypeScript</div>
-          <div class="tk"><div class="tk-d"></div>Python</div>
-          <div class="tk"><div class="tk-d"></div>GitHub Actions</div>
-          <div class="tk"><div class="tk-d"></div>Docker</div>
-          <div class="tk"><div class="tk-d"></div>ServiceNow</div>
-          <div class="tk"><div class="tk-d"></div>OpenSSL</div>
-          <div class="tk"><div class="tk-d"></div>CyberChef</div>
-          <div class="tk"><div class="tk-d"></div>Kerberos</div>
-          <div class="tk"><div class="tk-d"></div>ITIL</div>
-          <div class="tk"><div class="tk-d"></div>Power Apps</div>
-          <div class="tk"><div class="tk-d"></div>Anthropic API</div>
-          <div class="tk"><div class="tk-d"></div>Claude API</div>
-          <div class="tk"><div class="tk-d"></div>Supabase</div>
-          <div class="tk"><div class="tk-d"></div>Railway</div>
-          <div class="tk"><div class="tk-d"></div>GitHub Actions CI/CD</div>
-          <div class="tk"><div class="tk-d"></div>APScheduler
+          <div class="proj-card tmn-card fi d3" data-tilt>
+            <div class="proj-banner tmn-banner pb-purple">
+              <span class="tmn-mark" aria-hidden="true">&ldquo;</span>
+              <div class="proj-arr">↗</div>
+            </div>
+            <div class="proj-body">
+              <span class="proj-badge pb-badge-purple">Instructor · SAIT</span>
+              <div class="proj-name">Tamanna Malik</div>
+              <div class="tmn-quote">I had the pleasure of teaching Gursharan in Scripting with Python, Networking, and
+                Project Management. I was particularly impressed by his passion for learning, willingness to explore
+                new ideas, and ability to turn those ideas into practical solutions. He is a quick learner, a creative
+                problem solver, and someone who genuinely enjoys building meaningful solutions.</div>
+              <div class="tmn-role-sub">Cisco NetAcad Instructor · Cybersecurity Professional · AWS Certified Developer</div>
+            </div>
           </div>
         </div>
       </div>
@@ -2668,7 +2951,7 @@
       <div class="contact-inner fi">
         <span class="contact-label">Let's talk</span>
         <h2 class="contact-heading">Let's build<br><span class="ac">something.</span></h2>
-        <p class="contact-sub">Open to co-ops, internships, freelance, and conversations.</p>
+        <p class="contact-sub">Applying to entry-level IT roles — help desk, systems analyst, junior sysadmin — plus client work and conversations.</p>
         <p class="contact-avail">Based in Calgary, AB &nbsp;·&nbsp; Available now</p>
         <div class="contact-links">
           <a href="https://www.linkedin.com/in/brar-gursharan13/" target="_blank" rel="noopener" class="c-link">
@@ -2714,40 +2997,54 @@
   </footer>
 
   <script>
+    /* Reduced-motion & touch guards */
+    const RM = document.documentElement.classList.contains('reduce-motion');
+    const HAS_HOVER = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const DESKTOP = window.matchMedia('(min-width: 769px)').matches;
+
     /* ════════════════════════════════════════════════
-       1. CURSOR
+       1. CURSOR (skip on touch or reduce-motion)
     ════════════════════════════════════════════════ */
-    const dot = document.getElementById('cur-dot');
-    const ring = document.getElementById('cur-ring');
-    let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my;
+    if (HAS_HOVER && !RM) {
+      const dot = document.getElementById('cur-dot');
+      const ring = document.getElementById('cur-ring');
+      let mx = innerWidth / 2, my = innerHeight / 2, rx = mx, ry = my;
 
-    document.addEventListener('mousemove', e => {
-      mx = e.clientX; my = e.clientY;
-      dot.style.left = mx + 'px'; dot.style.top = my + 'px';
-    });
+      document.addEventListener('mousemove', e => {
+        mx = e.clientX; my = e.clientY;
+        dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+      });
 
-    (function lerpRing() {
-      rx += (mx - rx) * .11; ry += (my - ry) * .11;
-      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
-      requestAnimationFrame(lerpRing);
-    })();
+      (function lerpRing() {
+        rx += (mx - rx) * .11; ry += (my - ry) * .11;
+        ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+        requestAnimationFrame(lerpRing);
+      })();
 
-    function setCursorState(state) {
-      document.body.classList.remove('cl', 'cb', 'cc');
-      if (state) document.body.classList.add(state);
+      function setCursorState(state) {
+        document.body.classList.remove('cl', 'cb', 'cc');
+        if (state) document.body.classList.add(state);
+      }
+      document.querySelectorAll('a:not(.btn):not(.c-link), .nav-links a, .mob-link').forEach(el => {
+        el.addEventListener('mouseenter', () => setCursorState('cl'));
+        el.addEventListener('mouseleave', () => setCursorState(''));
+      });
+      document.querySelectorAll('.btn, .c-link, .hbg').forEach(el => {
+        el.addEventListener('mouseenter', () => setCursorState('cb'));
+        el.addEventListener('mouseleave', () => setCursorState(''));
+      });
+      document.querySelectorAll('.proj-card, .work-card, .stat').forEach(el => {
+        el.addEventListener('mouseenter', () => setCursorState('cc'));
+        el.addEventListener('mouseleave', () => setCursorState(''));
+      });
+    } else {
+      // Ensure system cursor is visible + hide the custom rings entirely.
+      document.body.style.cursor = 'auto';
+      const dot = document.getElementById('cur-dot');
+      const ring = document.getElementById('cur-ring');
+      if (dot) dot.style.display = 'none';
+      if (ring) ring.style.display = 'none';
     }
-    document.querySelectorAll('a:not(.btn):not(.c-link), .nav-links a, .mob-link').forEach(el => {
-      el.addEventListener('mouseenter', () => setCursorState('cl'));
-      el.addEventListener('mouseleave', () => setCursorState(''));
-    });
-    document.querySelectorAll('.btn, .c-link, .hbg').forEach(el => {
-      el.addEventListener('mouseenter', () => setCursorState('cb'));
-      el.addEventListener('mouseleave', () => setCursorState(''));
-    });
-    document.querySelectorAll('.proj-card, .work-card, .stat').forEach(el => {
-      el.addEventListener('mouseenter', () => setCursorState('cc'));
-      el.addEventListener('mouseleave', () => setCursorState(''));
-    });
 
     /* ════════════════════════════════════════════════
        2. NAVBAR + SCROLL-TO-TOP
@@ -2758,60 +3055,87 @@
       nav.classList.toggle('solid', scrollY > 50);
       stt.classList.toggle('show', scrollY > 450);
     }, { passive: true });
-    stt.addEventListener('click', e => { e.preventDefault(); scrollTo({ top: 0, behavior: 'smooth' }); });
+    stt.addEventListener('click', e => {
+      e.preventDefault();
+      scrollTo({ top: 0, behavior: RM ? 'auto' : 'smooth' });
+    });
 
     /* ════════════════════════════════════════════════
-       3. HAMBURGER / MOBILE NAV
+       3. HAMBURGER / MOBILE NAV — a11y toggles
     ════════════════════════════════════════════════ */
     const hbg = document.getElementById('hbg');
     const mobNav = document.getElementById('mob-nav');
-    hbg.addEventListener('click', () => {
-      hbg.classList.toggle('open');
-      mobNav.classList.toggle('open');
-    });
-    document.querySelectorAll('.mob-link').forEach(a => a.addEventListener('click', () => {
-      hbg.classList.remove('open'); mobNav.classList.remove('open');
-    }));
+    if (hbg && mobNav) {
+      hbg.setAttribute('aria-controls', 'mob-nav');
+      hbg.setAttribute('aria-expanded', 'false');
+      mobNav.setAttribute('role', 'dialog');
+      mobNav.setAttribute('aria-modal', 'true');
+      const setOpen = (open) => {
+        hbg.classList.toggle('open', open);
+        mobNav.classList.toggle('open', open);
+        hbg.setAttribute('aria-expanded', open ? 'true' : 'false');
+        document.body.style.overflow = open ? 'hidden' : '';
+      };
+      hbg.addEventListener('click', () => setOpen(!hbg.classList.contains('open')));
+      document.querySelectorAll('.mob-link').forEach(a =>
+        a.addEventListener('click', () => setOpen(false)));
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && hbg.classList.contains('open')) setOpen(false);
+      });
+    }
 
     /* ════════════════════════════════════════════════
        4. SMOOTH SCROLL
     ════════════════════════════════════════════════ */
     document.querySelectorAll('a[href^="#"]').forEach(a => {
       a.addEventListener('click', e => {
-        const t = document.querySelector(a.getAttribute('href'));
-        if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        const href = a.getAttribute('href');
+        if (href === '#' || href.length < 2) return;
+        const t = document.querySelector(href);
+        if (t) {
+          e.preventDefault();
+          t.scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: 'start' });
+        }
       });
     });
 
     /* ════════════════════════════════════════════════
        5. HERO PARALLAX + FADE ON SCROLL
     ════════════════════════════════════════════════ */
-    const heroInner = document.getElementById('hero-inner');
-    window.addEventListener('scroll', () => {
-      const y = scrollY;
-      if (y < innerHeight && heroInner) {
-        heroInner.style.transform = `translateY(${y * .22}px)`;
-        heroInner.style.opacity = `${Math.max(0, 1 - y / (innerHeight * .65))}`;
-      }
-    }, { passive: true });
+    if (!RM) {
+      const heroInner = document.getElementById('hero-inner');
+      window.addEventListener('scroll', () => {
+        const y = scrollY;
+        if (y < innerHeight && heroInner) {
+          heroInner.style.transform = `translateY(${y * .22}px)`;
+          heroInner.style.opacity = `${Math.max(0, 1 - y / (innerHeight * .65))}`;
+        }
+      }, { passive: true });
+    }
 
     /* ════════════════════════════════════════════════
        6. TYPEWRITER
     ════════════════════════════════════════════════ */
-    const TAGLINE = 'SAIT · CareFlow AI · Hackathon Builder';
     const twEl = document.getElementById('typewriter');
-    let twI = 0;
-    function typeNext() {
-      if (twI < TAGLINE.length) {
-        twEl.textContent += TAGLINE[twI++];
-        setTimeout(typeNext, 48);
+    const bc = document.querySelector('.cur-blink');
+    if (twEl) {
+      const TAGLINE = twEl.textContent || 'SAIT · CareFlow AI · Full-Stack Builder';
+      if (RM) {
+        // Content already visible; hide the blinking cursor since we won't type it in.
+        if (bc) bc.style.display = 'none';
       } else {
-        // hide blinking cursor once done
-        const bc = document.querySelector('.cur-blink');
-        if (bc) setTimeout(() => bc.style.display = 'none', 800);
+        twEl.textContent = '';
+        let twI = 0;
+        (function typeNext() {
+          if (twI < TAGLINE.length) {
+            twEl.textContent += TAGLINE[twI++];
+            setTimeout(typeNext, 48);
+          } else if (bc) {
+            setTimeout(() => bc.style.display = 'none', 800);
+          }
+        })();
       }
     }
-    setTimeout(typeNext, 1380);
 
     /* ════════════════════════════════════════════════
        7. INTERSECTION OBSERVER — reveal + count-up
@@ -2826,92 +3150,84 @@
       })(t0);
     }
 
-    const io = new IntersectionObserver(entries => {
-      entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        e.target.classList.add('in');
+    // If reduce-motion, just reveal everything up-front and skip counter animation.
+    if (RM) {
+      document.querySelectorAll('.fi, .tl-item, #about-rule').forEach(el => el.classList.add('in'));
+      // Stats already show the target values in the HTML — leave them alone.
+    } else if ('IntersectionObserver' in window) {
+      // Reset stat counters to 0 so we can animate them up.
+      document.querySelectorAll('.stat-num[data-target]').forEach(el => { el.textContent = '0'; });
 
-        // rule animation
-        if (e.target.id === 'about-rule') e.target.classList.add('in');
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+          if (!e.isIntersecting) return;
+          e.target.classList.add('in');
 
-        // count-up stats
-        e.target.querySelectorAll('.stat-num[data-target]').forEach(el => {
-          if (el.dataset.counted) return;
-          el.dataset.counted = '1';
-          setTimeout(() => countUp(el, +el.dataset.target, el.dataset.suffix || '', 1300), 150);
+          e.target.querySelectorAll('.stat-num[data-target]').forEach(el => {
+            if (el.dataset.counted) return;
+            el.dataset.counted = '1';
+            setTimeout(() => countUp(el, +el.dataset.target, el.dataset.suffix || '', 1300), 150);
+          });
         });
+      }, { threshold: .13 });
 
-        // timeline items
-        if (e.target.classList.contains('tl-item')) e.target.classList.add('in');
-      });
-    }, { threshold: .13 });
+      document.querySelectorAll('.fi, .tl-item, #about-rule').forEach(el => io.observe(el));
 
-    document.querySelectorAll('.fi, .tl-item, #about-rule').forEach(el => io.observe(el));
+      // Safety net: if IO never fires (edge browsers, weird viewport), reveal after 2.5s.
+      setTimeout(() => {
+        document.querySelectorAll('.fi:not(.in), .tl-item:not(.in), #about-rule:not(.in)')
+          .forEach(el => el.classList.add('in'));
+      }, 2500);
+    } else {
+      // No IO support: show everything.
+      document.querySelectorAll('.fi, .tl-item, #about-rule').forEach(el => el.classList.add('in'));
+    }
 
     /* ════════════════════════════════════════════════
        8. TIMELINE LINE DRAW ON SCROLL
     ════════════════════════════════════════════════ */
     const tlWrap = document.getElementById('tl-wrap');
     const tlFill = document.getElementById('tl-fill');
-    function drawTimeline() {
-      if (!tlWrap || !tlFill) return;
-      const r = tlWrap.getBoundingClientRect();
-      const progress = Math.max(0, Math.min(1, (innerHeight - r.top) / r.height));
-      tlFill.style.transform = `scaleY(${progress})`;
-    }
-    window.addEventListener('scroll', drawTimeline, { passive: true });
-    drawTimeline();
-
-    /* ════════════════════════════════════════════════
-       9. PANEL HOVER EXPAND (What I Do)
-    ════════════════════════════════════════════════ */
-    const panelL = document.getElementById('panel-l');
-    const panelR = document.getElementById('panel-r');
-    const panels = [panelL, panelR];
-
-    if (panelL && panelR && window.matchMedia('(hover: hover) and (min-width: 769px)').matches) {
-      panels.forEach(p => {
-        p.addEventListener('mouseenter', () => {
-          p.classList.add('expanded');
-          panels.filter(q => q !== p).forEach(q => q.classList.add('shrunk'));
-        });
-        p.addEventListener('mouseleave', () => {
-          panels.forEach(q => q.classList.remove('expanded', 'shrunk'));
-        });
-        // spotlight follow cursor
-        p.addEventListener('mousemove', e => {
-          const r = p.getBoundingClientRect();
-          const x = ((e.clientX - r.left) / r.width * 100).toFixed(1);
-          const y = ((e.clientY - r.top) / r.height * 100).toFixed(1);
-          p.style.setProperty('--spx', x + '%');
-          p.style.setProperty('--spy', y + '%');
-        });
-      });
+    if (tlWrap && tlFill) {
+      if (RM) {
+        tlFill.style.transform = 'scaleY(1)';
+      } else {
+        const drawTimeline = () => {
+          const r = tlWrap.getBoundingClientRect();
+          const progress = Math.max(0, Math.min(1, (innerHeight - r.top) / r.height));
+          tlFill.style.transform = `scaleY(${progress})`;
+        };
+        window.addEventListener('scroll', drawTimeline, { passive: true });
+        drawTimeline();
+      }
     }
 
     /* ════════════════════════════════════════════════
-       10. PROJECT CARD 3D TILT + SPOTLIGHT
+       9. PROJECT CARD 3D TILT + SPOTLIGHT
+       (skip on touch or reduce-motion; kept for its personality on desktop)
     ════════════════════════════════════════════════ */
-    document.querySelectorAll('[data-tilt]').forEach(card => {
-      let raf;
-      card.addEventListener('mousemove', e => {
-        cancelAnimationFrame(raf);
-        raf = requestAnimationFrame(() => {
-          const r = card.getBoundingClientRect();
-          const dx = (e.clientX - r.left) / r.width - .5;
-          const dy = (e.clientY - r.top) / r.height - .5;
-          card.style.transform = `perspective(900px) rotateX(${-dy * 7}deg) rotateY(${dx * 7}deg) translateZ(6px)`;
-          card.style.setProperty('--cx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
-          card.style.setProperty('--cy', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+    if (HAS_HOVER && DESKTOP && !RM) {
+      document.querySelectorAll('[data-tilt]').forEach(card => {
+        let raf;
+        card.addEventListener('mousemove', e => {
+          cancelAnimationFrame(raf);
+          raf = requestAnimationFrame(() => {
+            const r = card.getBoundingClientRect();
+            const dx = (e.clientX - r.left) / r.width - .5;
+            const dy = (e.clientY - r.top) / r.height - .5;
+            card.style.transform = `perspective(900px) rotateX(${-dy * 7}deg) rotateY(${dx * 7}deg) translateZ(6px)`;
+            card.style.setProperty('--cx', ((e.clientX - r.left) / r.width * 100).toFixed(1) + '%');
+            card.style.setProperty('--cy', ((e.clientY - r.top) / r.height * 100).toFixed(1) + '%');
+          });
+        });
+        card.addEventListener('mouseleave', () => {
+          cancelAnimationFrame(raf);
+          card.style.transition = 'transform .55s cubic-bezier(.175,.885,.32,1.275), border-color .3s, box-shadow .3s';
+          card.style.transform = '';
+          setTimeout(() => card.style.transition = '', 550);
         });
       });
-      card.addEventListener('mouseleave', () => {
-        cancelAnimationFrame(raf);
-        card.style.transition = 'transform .55s cubic-bezier(.175,.885,.32,1.275), border-color .3s, box-shadow .3s';
-        card.style.transform = '';
-        setTimeout(() => card.style.transition = '', 550);
-      });
-    });
+    }
   </script>
 </body>
 
